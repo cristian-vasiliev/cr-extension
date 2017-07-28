@@ -1,6 +1,7 @@
 import {MetadataReader} from './lib/MetadataReader';
 import {CommitMessageTemplate} from './lib/CommitMessageTemplate';
 import {PageController} from './lib/PageController';
+import config from './config';
 
 chrome.browserAction.onClicked.addListener(() => {
   chrome.tabs.getSelected(null, function (tab) {
@@ -14,8 +15,7 @@ chrome.browserAction.onClicked.addListener(() => {
         mapper: function (element) {
           return Array.from(element.children)
             .filter(reviewerParagraph => Boolean(reviewerParagraph.querySelector('.octicon-check')))
-            .map(reviewerParagraph => reviewerParagraph.innerText.trim())
-            .join(', ');
+            .map(reviewerParagraph => reviewerParagraph.innerText.trim());
         }
       },
       jiraTicket: {
@@ -32,15 +32,16 @@ chrome.browserAction.onClicked.addListener(() => {
         selector: '#merge_title_field',
         mapper: e => e.value,
       }
-    }).then(items => {
-      const template = new CommitMessageTemplate();
-      const commitMessage = template.render(items);
-      const initialMergeTitle = items.mergeTitle;
-      const updatedTitleMessage = initialMergeTitle.replace(/\s*\(#\d+\)\s*$/, '');
+    }).then(data => {
+      data.reviewers = data.reviewers.map(reviewer => {
+        return config.users[reviewer] || reviewer.toLowerCase();
+      }).join(', ');
+
+      const commitMessage = new CommitMessageTemplate().render(data);
 
       return Promise.all([
-        controller.updateInputValue('#merge_title_field', updatedTitleMessage),
-        controller.updateInputValue('#merge_message_field', commitMessage)
+        controller.updateInputValue('#merge_message_field', commitMessage),
+        controller.updateInputValue('#merge_title_field', data.mergeTitle.replace(/\s*\(#\d+\)\s*$/, '')),
       ]);
     });
   });
