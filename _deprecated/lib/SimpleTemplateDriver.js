@@ -1,4 +1,4 @@
-import {TemplateToken} from './TemplateToken';
+import { TemplateToken } from '_deprecated/lib/TemplateToken';
 
 export class SimpleTemplateDriver {
   constructor() {
@@ -11,16 +11,16 @@ export class SimpleTemplateDriver {
    */
   get defaultFilters() {
     return {
-      random: array => {
-        return array[Math.floor(Math.random() * array.length)]
+      random: (array) => {
+        return array[Math.floor(Math.random() * array.length)];
       },
-      join: array => array.join(', '),
-      clear: string => {
+      join: (array) => array.join(', '),
+      clear: (string) => {
         return (string || '')
           .replace(/^\s*:[^:]+\s*:\s*/, '')
           .replace(/\s*\(#\d+\)\s*$/, '');
       },
-    }
+    };
   }
 
   /**
@@ -48,7 +48,7 @@ export class SimpleTemplateDriver {
         throw new Error(`Unknown template filter "${token.filter}"`);
       }
 
-      const filterFunc = this._filters[token.filter] || (a => a);
+      const filterFunc = this._filters[token.filter] || ((a) => a);
       const tokenValue = params[token.name];
 
       return filterFunc(tokenValue);

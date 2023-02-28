@@ -1,4 +1,4 @@
-import {SimpleTemplateDriver} from './SimpleTemplateDriver';
+import { SimpleTemplateDriver } from '_deprecated/lib/SimpleTemplateDriver';
 
 export class AbstractTemplate {
   constructor(templateDriver = null) {
