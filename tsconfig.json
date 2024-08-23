@@ -3,8 +3,9 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@popup/*": ["packages/popup/*"]
-    },
+      "@popup/*": ["packages/popup/*"],
+      "@content/*": ["packages/content/*"],
+    }
   },
   "include": [
     "packages/**/*",

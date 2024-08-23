@@ -6,7 +6,7 @@ export async function getCurrentTab() {
 
 type Fn<Args> = (...args: Args[]) => any;
 
-export function executeScript<T, Args>(
+export function executeScript<T, Args = never>(
   func: Fn<Args>,
   args?: Args[]
 ): Promise<T> {

@@ -7,5 +7,17 @@
     "default_popup": "index.html",
     "default_icon": "icon.png"
   },
-  "permissions": ["tabs", "activeTab", "scripting"]
+  "permissions": ["tabs", "activeTab", "scripting"],
+  "web_accessible_resources": [
+    {
+      "resources": [ "content.css", "icon.png", "hime.png", "bg.png"],
+      "matches": [ "https://*/*" ]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://stage-support.crunchyroll.com/*"],
+      "js": ["content.js"]
+    }
+  ]
 }

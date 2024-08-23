@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body#template_container {
+    border: 0;
+    padding: 0;
+    background: white;
+    font-size: 16px;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+}
+
+input[type=text] {
+    border: unset;
+}
+
+#userdash_container {
+    width: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.submitbtn {
+    background: #faaf3f;
+    border-radius: 99px;
+    border: 0;
+    padding: 8px 24px;
+    min-width: 200px;
+    color: #fff;
+    margin-top: 24px;
+}
+
+.widget-form-td:first-of-type {
+    padding-right: 20px;
+}
+
+#userdash_column1 {
+    width: auto;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px !important;
+}
+
+.widget-form-td input[type=text] {
+    border: unset;
+    background: #eaedef;
+    border-radius: 8px;
+    padding: 4px 12px;
+}
+
+.danger-btn {
+    background: #f44336;
+    border-radius: 99px;
+    border: 0;
+    padding: 8px 24px;
+    min-width: 200px;
+    color: #fff;
+    margin-top: 24px;
+}
+
+.userdash-center.bottom .red {
+    margin-top: 12px;
+
+}
